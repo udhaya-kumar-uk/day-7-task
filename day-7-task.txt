@@ -1,0 +1,68 @@
+////total population of countries////
+
+var getcountryrequest=new XMLHttpRequest();
+getcountryrequest.open("GET","https://restcountries.com/v3.1/all");
+getcountryrequest.send();
+getcountryrequest.onload=function(){
+    var data=JSON.parse( this.responseText);
+    var result=data.reduce((acc,element)=>{
+    if(typeof acc==="object"){
+    return acc.population+element.population
+    }
+    return acc+element.population
+    })
+    console.log(result)
+}
+////region ofcountries/////
+var getcountryrequest=new XMLHttpRequest();
+getcountryrequest.open("GET","https://restcountries.com/v3.1/all");
+getcountryrequest.send();
+getcountryrequest.onload=function(){
+    var data=JSON.parse( this.responseText);
+ var result= data.filter((acc,element)=>{
+ const {region=''}=acc
+ console.log(region)
+ return acc
+ });
+ }
+   
+/////under 2 laks population countries///
+var getcountryrequest=new XMLHttpRequest();
+getcountryrequest.open("GET","https://restcountries.com/v3.1/all");
+getcountryrequest.send();
+getcountryrequest.onload=function(){
+    var data=JSON.parse( this.responseText);
+ var result= data.filter((acc,element)=>{
+ const {population=''}=acc
+ if(population<200000)
+ console.log(population)
+ return acc
+ });
+ }
+ 
+///////countries name,capital,flag
+var getcountryrequest=new XMLHttpRequest();
+getcountryrequest.open("GET","https://restcountries.com/v3.1/all");
+getcountryrequest.send();
+getcountryrequest.onload=function(){
+    var data=JSON.parse( this.responseText);
+ var result= data.forEach((acc,element)=>{
+ const {name={},capital='',flag={}}=acc
+ console.log(name.common,capital,flag.svg)
+ return acc
+ });
+ }  
+/////////////currencies/
+var getcountryrequest=new XMLHttpRequest();
+getcountryrequest.open("GET","https://restcountries.com/v3.1/all");
+getcountryrequest.send();
+getcountryrequest.onload=function(){
+    var data=JSON.parse( this.responseText);
+     console.log(data)
+     var res=data.filter((e)=>{for(let i in e.currencies){
+    if(e.currencies[i]){
+        console.log(e.currencies[i].name)
+    }
+}})
+     
+    }
